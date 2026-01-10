@@ -1,6 +1,13 @@
+// Home.tsx
+
+import { useState } from "react";
 import SearchBar from "../features/search/SearchBar";
+import Selected from "../features/weather/Selected";
 
 export default function Home(){
+    const [selectedLocation, setSelectedLocation] = useState("");
+
+
     return(
         <div className="h-screen flex flex-col">
             {/* 최상단 메뉴 */}
@@ -13,10 +20,12 @@ export default function Home(){
             </section>
             {/* 검색 */}
             <section className="w-full h-20 border-2 border-red-500">
-                <SearchBar/>
+                <SearchBar onSearch={setSelectedLocation}/>
             </section>
             {/* 하단 */}
-            <section className="w-full h-100 border-2 border-red-500"></section>
+            <section className="w-full h-100 border-2 border-red-500">
+                <Selected location={selectedLocation}/>
+            </section>
         </div>
     );
 }
