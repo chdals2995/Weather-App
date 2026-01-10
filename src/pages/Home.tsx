@@ -1,18 +1,22 @@
+import SearchBar from "../features/search/SearchBar";
 
 export default function Home(){
     return(
-        <div>
+        <div className="h-screen flex flex-col">
             {/* 최상단 메뉴 */}
-            <section className="flex">
-                <div>현위치</div>
-                <div>즐겨찾기</div>
+            <section className="w-full flex justify-between border-2 border-red-500">
+                <div className="w-10 border-2 border-red-500">현위치</div>
+                <div className="w-10 border-2 border-red-500">즐겨찾기</div>
             </section>
             {/* 상단 */}
-            <section className=""></section>
+            <section className="w-full h-100 border-2 border-red-500">
+            </section>
             {/* 검색 */}
-            <section className=""></section>
+            <section className="w-full h-20 border-2 border-red-500">
+                <SearchBar/>
+            </section>
             {/* 하단 */}
-            <section className=""></section>
+            <section className="w-full h-100 border-2 border-red-500"></section>
         </div>
     );
 }
