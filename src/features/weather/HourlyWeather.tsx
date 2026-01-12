@@ -42,16 +42,16 @@ function mapWeatherMainToIcon(main: string, isDay: boolean = true) {
 
 export default function HourlyWeather({ hourly }: HourlyWeatherProps) {
   return (
-    <ul className="border flex justify-around mt-12">
+    <ul className="w-full flex justify-around">
       {hourly.map((item,idx) => (
         <li key={`${item.time}-${idx}`}
-        className="border flex-col justify-between flex">
-          <span className="block">{item.time}</span>
+        className="border border-blue-400 flex-col justify-between flex-1 h-24">
+          <span className="block text-center">{item.time}</span>
           <img
             src={mapWeatherMainToIcon(item.main)} alt={item.time} 
-            className="block"
+            className="block mx-auto"
           />
-          <span className="block">{item.temp}°</span>
+          <span className="block text-center ">{item.temp}°</span>
         </li>
       ))}
     </ul>

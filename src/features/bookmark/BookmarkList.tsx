@@ -112,14 +112,14 @@ export default function BookmarkList({ onSelect }: BookmarkListProps) {
                 e.stopPropagation();
                 setOpenMenuCity(openMenuCity === b.city ? null : b.city);
               }}
-              className="border w-8 h-8"
+              className="w-8 h-8"
             >
               <img src={setting} alt="설정" 
               className="w-5"/>
             </button>
 
             {openMenuCity === b.city && (
-              <div className="absolute right-0 mt-2 bg-white border rounded shadow z-10">
+              <div className="absolute right-0 mt-2 bg-white border rounded shadow z-10 w-20">
                 <button
                   className="block px-4 py-2 hover:bg-gray-100 w-full text-left"
                   onClick={(e) => {
