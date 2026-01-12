@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import WeatherInfo from "../weather/WeatherInfo";
 import HourlyWeather from "../weather/HourlyWeather";
-import { getForecastByCoord } from "../../shared/Weather";
+import { getForecastByCoord} from "../../shared/Weather";
 
 import BookmarkButton from "../bookmark/BookmarkButton";
 import BookmarkModal from "../bookmark/BookmarkModal";

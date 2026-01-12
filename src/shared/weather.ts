@@ -8,6 +8,13 @@ if (!API_KEY) {
   console.error("❌ VITE_WEATHER_API_KEY가 없습니다 (.env 확인)");
 }
 
+export type WeatherState = {
+  temp: number;
+  tempMin: number;
+  tempMax: number;
+  main: string;
+};
+
 // 현재 위치(위도, 경도) 기준 현재 날씨
 export async function getCurrentByCoord(lat: number, lon: number ) {
 
@@ -22,20 +29,6 @@ export async function getCurrentByCoord(lat: number, lon: number ) {
 
   return res.json();
 }
-
-// 좌표(위도/경도) 없이 한글 주소 → lat/lon 얻기 (Geocoding API)
-// export async function getCoordByCityName(city: string): Promise<{ lat: number; lon: number }>{
-//   const res = await fetch(
-//     `http://api.openweathermap.org/geo/1.0/direct?q=${city},KR&limit=1&appid=${API_KEY}`
-//   );
-//   if (!res.ok) throw new Error("좌표 조회 실패");
-//   const data = await res.json();
-//   if (!data[0] || data[0].lat === undefined || data[0].lon === undefined) {
-//   if (!data[0]) throw new Error("유효한 좌표 없음");
-// }
-//   return { lat: data[0].lat, lon: data[0].lon };
-// }
-
 
 // 3시간 단위 날씨 (최대 5일치)
 export async function getForecastByCoord(lat: number, lon: number) {
