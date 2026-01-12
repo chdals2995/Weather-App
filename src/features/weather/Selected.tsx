@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import WeatherInfo from "../weather/WeatherInfo";
 import HourlyWeather from "../weather/HourlyWeather";
 import { getForecastByCity } from "../../shared/Weather";
-import bookmark from "../../assets/icons/bookmark.png"
 
 type SelectedProps = {
   location?: string | null;
