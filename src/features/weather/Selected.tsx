@@ -34,6 +34,7 @@ export default function Selected({ location }: SelectedProps) {
   const [hourly, setHourly] = useState<HourlyItem[]>([]);
   const [isBookmarked, setIsBookmarked] = useState(false); // 1️⃣ 즐겨찾기 상태
   const [showModal, setShowModal] = useState(false); // 모달 상태
+  const [alias, setAlias] = useState<string | null>(null);
 
   // 시간 표시 함수
   function formatTime(dt: number) {
@@ -44,8 +45,21 @@ export default function Selected({ location }: SelectedProps) {
   // 2️⃣ 즐겨찾기 상태 초기화
   useEffect(() => {
     if (!city) return;
-    setIsBookmarked(getBookmarks().some(b => b.city === city));
-  }, [city]);
+    const bookmark = getBookmarks().find(b => b.city === city);
+
+  if (bookmark) {
+    setIsBookmarked(true);
+
+    if (bookmark.alias && bookmark.alias !== bookmark.city) {
+      setAlias(bookmark.alias);
+    } else {
+      setAlias(null);
+    }
+  } else {
+    setIsBookmarked(false);
+    setAlias(null);
+  }
+}, [city]);
 
   // 날씨 정보 가져오기
   useEffect(() => {
@@ -125,10 +139,11 @@ export default function Selected({ location }: SelectedProps) {
 
   // 모달에서 저장
   const handleSaveBookmark = (alias: string) => {
-    if (!weather) return;
+    if (!weather || !location) return;
 
     const item: BookmarkItem = {
       city,
+      location,
       alias,
       lat: 0,
       lon: 0,
@@ -148,9 +163,19 @@ export default function Selected({ location }: SelectedProps) {
   return (
     <div>
         <div className="flex justify-between">
-            <p>검색한 위치: {city}</p>
-            <BookmarkButton city={city} onClick={handleBookmarkClick} bookmarked={isBookmarked} />
-        </div>
+            <div>
+              {alias && (
+                <p className="font-bold text-lg">{alias}</p>
+              )}
+                <p className="text-sm text-gray-500">{city}</p>
+            </div>
+
+            <BookmarkButton
+              city={city}
+              onClick={handleBookmarkClick}
+              bookmarked={isBookmarked}
+            />
+          </div>
 
       {weather && (
         <WeatherInfo

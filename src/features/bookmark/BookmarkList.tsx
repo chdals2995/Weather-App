@@ -9,6 +9,28 @@ type BookmarkListProps = {
   onSelect: (city: string) => void;
 };
 
+export function mapWeatherMainToKorean(main: string): string {
+  switch (main) {
+    case "Clear":
+      return "맑음";
+    case "Clouds":
+    case "Haze":
+      return "흐림";
+    case "Rain":
+    case "Drizzle":
+      return "비";
+    case "Snow":
+      return "눈";
+    case "Thunderstorm":
+      return "천둥번개";
+    case "Mist":
+    case "Fog":
+      return "안개";
+    default:
+      return "알 수 없음";
+  }
+}
+
 export default function BookmarkList({ onSelect }: BookmarkListProps) {
   const [editingCity, setEditingCity] = useState<string | null>(null);
   const [editAlias, setEditAlias] = useState("");
@@ -20,7 +42,7 @@ export default function BookmarkList({ onSelect }: BookmarkListProps) {
 
   const handleEdit = (b: BookmarkItem) => {
     setEditingCity(b.city);
-    setEditAlias(b.alias || b.city);
+    setEditAlias(b.alias && b.alias !== b.city ? b.alias : "");
     setOpenMenuCity(null);
   };
 
@@ -40,12 +62,19 @@ export default function BookmarkList({ onSelect }: BookmarkListProps) {
         <div
           key={b.city}
           className="p-4 border rounded shadow cursor-pointer hover:bg-gray-100 flex justify-between items-center"
-          onClick={() => onSelect(b.city)}
+          onClick={() => {
+            const fallbackLocation = b.location ?? b.city.replace(" ", "-");
+            onSelect(fallbackLocation);
+          }}
         >
             {/* 좌측 정보 */}
           <div
             className="cursor-pointer"
-            onClick={() => editingCity !== b.city && onSelect(b.city)}
+            onClick={() => {
+              if (editingCity === b.city) return;
+              const fallbackLocation = b.location ?? b.city.replace(" ", "-");
+              onSelect(fallbackLocation);
+            }}
           >
             {editingCity === b.city ? (
               <input
@@ -58,9 +87,17 @@ export default function BookmarkList({ onSelect }: BookmarkListProps) {
               />
             ) : (
               <>
-                <p className="font-bold">{b.alias}</p>
-                <p className="text-sm text-gray-600">{b.weather}</p>
-                <p className="text-sm">{b.city}</p>
+                <p className="font-bold">
+                  {b.alias && b.alias !== b.city ? b.alias : b.city}
+                </p>
+
+                <p className="text-sm text-gray-600">
+                  {mapWeatherMainToKorean(b.weather)}
+                </p>
+
+                {b.alias && b.alias !== b.city && (
+                  <p className="text-sm text-gray-500">{b.city}</p>
+                )}
               </>
             )}
           </div>

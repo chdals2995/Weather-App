@@ -18,7 +18,7 @@ export default function BookmarkButton({
       <img
         src={icon}
         alt={bookmarked ? "즐겨찾기 해제" : "즐겨찾기 등록"}
-        style={{ width: 24, height: 24 }}
+        className="w-6 h-6"
       />
     </button>
   );

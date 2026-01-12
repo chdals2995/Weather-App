@@ -1,7 +1,8 @@
 // Bookmark.ts
 
 export type BookmarkItem = {
-  city: string;
+  city: string; //화면 표시용
+  location: string; //검색용
   alias?: string;
   lat: number;
   lon: number;
@@ -52,9 +53,24 @@ export function addBookmark(item: BookmarkItem) {
 
 // 별칭 수정
 export function updateBookmarkAlias(city: string, alias: string) {
-  bookmarks = bookmarks.map(b =>
-    b.city === city ? { ...b, alias } : b
-  );
+  const nextAlias = alias.trim();
+
+  bookmarks = bookmarks.map(b => {
+    if (b.city !== city) return b;
+
+    // 별칭 제거 조건
+    if (!nextAlias || nextAlias === b.city) {
+      const { alias, ...rest } = b; // alias 제거
+      return rest;
+    }
+
+    // 별칭 저장
+    return {
+      ...b,
+      alias: nextAlias,
+    };
+  });
+
   localStorage.setItem(STORAGE_KEY, JSON.stringify(bookmarks));
 }
 

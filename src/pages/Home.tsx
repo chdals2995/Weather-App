@@ -6,6 +6,8 @@ import Selected from "../features/weather/Selected";
 import Current from "../features/weather/Current";
 import BookmarkButton from "../features/bookmark/BookmarkButton";
 import BookmarkList from "../features/bookmark/BookmarkList";
+import navi from "../assets/icons/navi.png";
+import fillNavi from "../assets/icons/fill_navi.png";
 
 export default function Home(){
     const [selectedLocation, setSelectedLocation] = useState("");
@@ -24,11 +26,19 @@ export default function Home(){
         setSelectedLocation(""); // 선택된 검색 위치 초기화
     };
 
+    const isHome = !selectedLocation && !showBookmarkList;
+
     return(
         <div className="h-screen flex flex-col">
             {/* 최상단 메뉴 */}
             <section className="w-full flex justify-between border-2 border-red-500">
-                <div className="w-10 border-2 border-red-500">현위치</div>
+                <div className="w-10 border-2 border-red-500"
+                onClick={handleCurrentClick}>
+                    <button>
+                        <img src={isHome ? fillNavi : navi} alt={isHome ? "현 위치" : "현 위치 보기"}
+                        className="w-6 h-6" />
+                    </button>
+                </div>
                 <div className="w-10 border-2 border-red-500"
                 onClick={() => setShowBookmarkList(!showBookmarkList)}>
                     {/* BookmarkButton 예시: 현재 선택된 도시 없으면 빈 문자열 */}
@@ -56,9 +66,11 @@ export default function Home(){
                         <SearchBar onSearch={setSelectedLocation}/>
                     </section>
                     {/* 하단 (검색한 위치 날씨) */}
-                    <section className="w-full h-100 border-2 border-red-500">
-                        <Selected location={selectedLocation}/>
-                    </section>
+                    {selectedLocation && (
+                        <section className="w-full h-100 border-2 border-red-500">
+                            <Selected location={selectedLocation} />
+                        </section>
+                    )}
                 </>
             )}
         </div>
