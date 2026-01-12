@@ -42,6 +42,7 @@ export const cityCoords: Record<string, CityCoord> = {
   "중랑구": { lat: 37.6066, lon: 127.0924 },
 
   // 경기도
+  "경기도": { lat: 37.4138, lon: 127.5183 },
   "수원시": { lat: 37.2636, lon: 127.0286 },
   "성남시": { lat: 37.4200, lon: 127.1265 },
   "고양시": { lat: 37.6584, lon: 126.8320 },
@@ -75,6 +76,7 @@ export const cityCoords: Record<string, CityCoord> = {
   "연천군": { lat: 38.0967, lon: 127.0748 },
 
   // 강원도
+  "강원도": { lat: 37.8228, lon: 128.1555 },
   "춘천시": { lat: 37.8813, lon: 127.7298 },
   "원주시": { lat: 37.3422, lon: 127.9202 },
   "강릉시": { lat: 37.7519, lon: 128.8761 },
@@ -95,6 +97,7 @@ export const cityCoords: Record<string, CityCoord> = {
   "양양군": { lat: 38.0750, lon: 128.6190 },
 
   // 충청북도
+  "충청북도": { lat: 36.6357, lon: 127.4914 },
   "청주시": { lat: 36.6424, lon: 127.4890 },
   "충주시": { lat: 36.9910, lon: 127.9260 },
   "제천시": { lat: 37.1326, lon: 128.1910 },
@@ -106,9 +109,9 @@ export const cityCoords: Record<string, CityCoord> = {
   "괴산군": { lat: 36.8150, lon: 127.7860 },
   "음성군": { lat: 36.9400, lon: 127.6920 },
   "단양군": { lat: 36.9845, lon: 128.3650 },
-  // …추가 군/읍 필요 시 map 분리 가능
 
   // 충청남도
+  "충청남도": { lat: 36.5184, lon: 126.8000 },
   "천안시": { lat: 36.8151, lon: 127.1139 },
   "공주시": { lat: 36.4467, lon: 127.1190 },
   "보령시": { lat: 36.3333, lon: 126.6129 },
@@ -126,6 +129,7 @@ export const cityCoords: Record<string, CityCoord> = {
   "태안군": { lat: 36.7450, lon: 126.2980 },
   
   // 전라북도
+  "전라북도": { lat: 35.7175, lon: 127.1530 },
   "전주시": { lat: 35.8242, lon: 127.1480 },
   "군산시": { lat: 35.9676, lon: 126.7369 },
   "익산시": { lat: 35.9483, lon: 126.9578 },
@@ -142,6 +146,7 @@ export const cityCoords: Record<string, CityCoord> = {
   "부안군": { lat: 35.7317, lon: 126.7336 },
 
   // 전라남도
+  "전라남도": { lat: 34.8161, lon: 126.4630 },
   "목포시": { lat: 34.8118, lon: 126.3922 },
   "여수시": { lat: 34.7604, lon: 127.6622 },
   "순천시": { lat: 34.9506, lon: 127.4872 },
@@ -167,6 +172,7 @@ export const cityCoords: Record<string, CityCoord> = {
 
 
   // 경상북도
+  "경상북도": { lat: 36.5760, lon: 128.5056 },
   "포항시": { lat: 36.0190, lon: 129.3435 },
   "경주시": { lat: 35.8562, lon: 129.2247 },
   "김천시": { lat: 36.1396, lon: 128.1136 },
@@ -191,6 +197,7 @@ export const cityCoords: Record<string, CityCoord> = {
   "울릉군": { lat: 37.4844, lon: 130.9057 },
 
   // 경상남도
+  "경상남도": { lat: 35.4606, lon: 128.2132 },
   "창원시": { lat: 35.2270, lon: 128.6811 },
   "진주시": { lat: 35.1796, lon: 128.1076 },
   "통영시": { lat: 34.8544, lon: 128.4332 },
@@ -211,6 +218,7 @@ export const cityCoords: Record<string, CityCoord> = {
   "합천군": { lat: 35.5666, lon: 128.1658 },
 
   // 제주도
+  "제주특별자치도": { lat: 33.4996, lon: 126.5312 },
   "제주시": { lat: 33.4996, lon: 126.5312 },
   "서귀포시": { lat: 33.2500, lon: 126.5600 },
 };

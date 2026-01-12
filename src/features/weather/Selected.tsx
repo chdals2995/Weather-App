@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import WeatherInfo from "../weather/WeatherInfo";
 import HourlyWeather from "../weather/HourlyWeather";
-import { getForecastByCity, getForecastByCoord } from "../../shared/Weather";
+import { getForecastByCoord } from "../../shared/Weather";
 
 import BookmarkButton from "../bookmark/BookmarkButton";
 import BookmarkModal from "../bookmark/BookmarkModal";
@@ -54,24 +54,31 @@ export default function Selected({ location }: SelectedProps) {
     async function fetchWeather() {
       try {
         // location: "서울특별시-강남구-역삼동" 형태
-        const cityKor = location!.split("-")[0]; // 시
-        const guKor = location!.split("-")[1]; // 구 (있으면)
-        const dongKor = location!.split("-")[2]; // 동 (있으면)
+        const parts = location!.split("-");
 
-        // 먼저 좌표를 확인
-        let coord = cityCoords[dongKor] || cityCoords[guKor] || cityCoords[cityKor];
+        const cityKor = parts[0]; // 도 / 광역시
+        const guKor = parts[1];   // 시 / 군 / 구
+        const dongKor = parts[2]; // 동 / 읍 / 면
 
-        let forecastData;
-        if (coord) {
-          // 좌표 기반 API 호출
-          forecastData = await getForecastByCoord(coord.lat, coord.lon);
-        } else {
-          // fallback: 이름 기반 API 호출
-          forecastData = await getForecastByCity(cityKor);
-        }
+        // ✅ 화면에 보여줄 이름 (항상 한글)
+      const displayCity = parts.slice(0, 2).join(" ");
 
-        // 도시명(영문)
-        setCity(forecastData.city.name);
+        // ⬇️ 가장 하위 행정단위부터 좌표 찾기
+      const coord =
+        (dongKor && cityCoords[dongKor]) ||
+        (guKor && cityCoords[guKor]) ||
+        cityCoords[cityKor];
+
+      if (!coord) {
+        console.error("좌표를 찾을 수 없음:", location);
+        return;
+      }
+
+      // ✅ 좌표 기반으로만 호출
+      const forecastData = await getForecastByCoord(coord.lat, coord.lon);
+
+      // 도시명
+      setCity(displayCity);
 
         // 현재 날씨: 첫 번째 데이터
         const nowData = forecastData.list[0];
