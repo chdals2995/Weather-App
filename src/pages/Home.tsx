@@ -36,7 +36,7 @@ export default function Home(){
     return(
         <div className="h-screen flex flex-col">
             {/* 최상단 메뉴 */}
-            <section className="w-full flex justify-between bg-blue-100 border-2 border-red-500">
+            <section className="w-full flex justify-between bg-blue-100 ">
                 <div className="w-10 flex justify-center"
                 onClick={handleCurrentClick}>
                     <button>
@@ -63,16 +63,16 @@ export default function Home(){
                 ) : (
                 <>
                 {/* 상단 (사용자 위치 현재 날씨/ 즐겨찾기 날씨) */}
-                    <section className="w-full h-100 p-1 border-2 border-red-500">
+                    <section className="w-full h-100 p-1 ">
                         <Current/>
                     </section>
                 {/* 검색창 */}
-                    <section className="w-full h-20 border-2 border-red-500">
+                    <section className="w-full h-20 ">
                         <SearchBar onSearch={setSelectedLocation}/>
                     </section>
                 {/* 하단 (검색한 위치 날씨) */}
                     {selectedLocation && (
-                        <section className="w-full h-100 border-2 border-red-500">
+                        <section className="w-full h-100 ">
                             <Selected location={selectedLocation} />
                         </section>
                     )}

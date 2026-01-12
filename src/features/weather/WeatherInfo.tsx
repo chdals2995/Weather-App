@@ -47,21 +47,22 @@ export default function WeatherInfo({
   main,
 }: WeatherInfoProps) {
     return(
-        <div>
+        <div className="flex justify-between p-2 h-35">
             {/* 현재 위치의 날씨 표시 */}
-            <div>
-                <span>
+            <div className="w-65 relative">
+                <span className="position left-2">
                     {tempMin}°c / {tempMax}°c
                 </span>
                 {alias ? (
-                  <p className="font-bold text-lg">{alias}</p>
+                  <span className="font-bold text-lg block text-center">{alias}</span>
                 ) : (
-                  <p className="font-bold text-lg"></p>
+                  <span className="font-bold text-lg block text-center">di</span>
                 )}
             </div>
-            <div className="">
-                <img src={mapWeatherMainToIcon(main)} alt={main} />
-                <span>{temp}°c</span>
+            <div className="w-30">
+                <img src={mapWeatherMainToIcon(main)} alt={main} 
+                className="w-10 block mx-auto"/>
+                <span className="block text-center font-bold text-6xl">{temp}°</span>
             </div>
         </div>
     );
