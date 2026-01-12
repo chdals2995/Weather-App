@@ -31,15 +31,15 @@ export default function Home(){
     return(
         <div className="h-screen flex flex-col">
             {/* 최상단 메뉴 */}
-            <section className="w-full flex justify-between border-2 border-red-500">
-                <div className="w-10 border-2 border-red-500"
+            <section className="w-full flex justify-between bg-blue-100 border-2 border-red-500">
+                <div className="w-10 flex justify-center"
                 onClick={handleCurrentClick}>
                     <button>
                         <img src={isHome ? fillNavi : navi} alt={isHome ? "현 위치" : "현 위치 보기"}
-                        className="w-6 h-6" />
+                        className="w-6 h-6 mt-1" />
                     </button>
                 </div>
-                <div className="w-10 border-2 border-red-500"
+                <div className="w-10 flex justify-center"
                 onClick={() => setShowBookmarkList(!showBookmarkList)}>
                     {/* BookmarkButton 예시: 현재 선택된 도시 없으면 빈 문자열 */}
                     <BookmarkButton
@@ -50,22 +50,22 @@ export default function Home(){
                 </div>
             </section>
 
-            {/* 즐겨찾기 목록 */}
+                {/* 즐겨찾기 목록 */}
                 {showBookmarkList ? (
                     <section className="w-full border-2 border-blue-500 p-2 bg-gray-50">
                         <BookmarkList onSelect={handleSelectBookmark} />
                     </section>
                 ) : (
                 <>
-                    {/* 상단 (사용자 위치 현재 날씨/ 즐겨찾기 날씨) */}
+                {/* 상단 (사용자 위치 현재 날씨/ 즐겨찾기 날씨) */}
                     <section className="w-full h-100 border-2 border-red-500">
                         <Current/>
                     </section>
-                    {/* 검색창 */}
+                {/* 검색창 */}
                     <section className="w-full h-20 border-2 border-red-500">
                         <SearchBar onSearch={setSelectedLocation}/>
                     </section>
-                    {/* 하단 (검색한 위치 날씨) */}
+                {/* 하단 (검색한 위치 날씨) */}
                     {selectedLocation && (
                         <section className="w-full h-100 border-2 border-red-500">
                             <Selected location={selectedLocation} />

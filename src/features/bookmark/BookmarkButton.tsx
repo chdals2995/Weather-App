@@ -18,7 +18,7 @@ export default function BookmarkButton({
       <img
         src={icon}
         alt={bookmarked ? "즐겨찾기 해제" : "즐겨찾기 등록"}
-        className="w-6 h-6"
+        className="w-6 h-6 mt-1"
       />
     </button>
   );
